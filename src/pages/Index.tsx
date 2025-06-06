@@ -1,51 +1,48 @@
 
 import React from 'react';
-import { AIBrain } from '../components/AIBrain';
-import { AIHelper } from '../components/AIHelper';
-import { AICreative } from '../components/AICreative';
-import { AIProblemSolver } from '../components/AIProblemSolver';
-import { AILearning } from '../components/AILearning';
-import { FloatingElements } from '../components/FloatingElements';
+import { CharacterScene } from '../components/CharacterScene';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 relative overflow-hidden">
-      <FloatingElements />
-      
-      {/* Hero Section */}
-      <section className="h-screen flex items-center justify-center relative">
-        <div className="text-center animate-fade-in">
-          <AIBrain />
-        </div>
-      </section>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-blue-900 relative overflow-hidden">
+      {/* Starry Background */}
+      <div className="absolute inset-0">
+        {[...Array(100)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${2 + Math.random() * 2}s`,
+              opacity: Math.random() * 0.8 + 0.2,
+            }}
+          />
+        ))}
+        
+        {/* Larger stars */}
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={`star-${i}`}
+            className="absolute text-white animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              fontSize: `${8 + Math.random() * 8}px`,
+              animationDelay: `${Math.random() * 4}s`,
+              animationDuration: `${3 + Math.random() * 2}s`,
+            }}
+          >
+            ✨
+          </div>
+        ))}
+      </div>
 
-      {/* AI Helper Section */}
-      <section className="h-screen flex items-center justify-center relative">
-        <div className="animate-fade-in">
-          <AIHelper />
-        </div>
-      </section>
-
-      {/* AI Creative Section */}
-      <section className="h-screen flex items-center justify-center relative">
-        <div className="animate-fade-in">
-          <AICreative />
-        </div>
-      </section>
-
-      {/* AI Problem Solver Section */}
-      <section className="h-screen flex items-center justify-center relative">
-        <div className="animate-fade-in">
-          <AIProblemSolver />
-        </div>
-      </section>
-
-      {/* AI Learning Section */}
-      <section className="h-screen flex items-center justify-center relative">
-        <div className="animate-fade-in">
-          <AILearning />
-        </div>
-      </section>
+      {/* Main Character Scene */}
+      <div className="relative z-10 h-screen flex items-center justify-center">
+        <CharacterScene />
+      </div>
     </div>
   );
 };
